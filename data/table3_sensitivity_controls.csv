@@ -1,0 +1,8 @@
+Sensitivity_Analysis,Comparison_Groups,Endpoint,Exposed_n_N_Pct,Reference_n_N_Pct,ROR,CI_95_Lower,CI_95_Upper
+1. Polypharmacy vs Polypharmacy,Stratum 1 (n=288) vs Stratum 2 D2-AP Only (n=143),Composite Constipation / Urinary Retention / GERD,57/288 (19.8%),16/143 (11.2%),1.96,1.08,3.55
+2. Excluding Clozapine (TRS Removed),Non-Clozapine Stratum 1 (n=190) vs Pure Monotherapy (n=1717),Constipation,25/190 (13.2%),125/1717 (7.3%),1.93,1.22,3.05
+2. Excluding Clozapine (TRS Removed),Non-Clozapine Stratum 1 (n=190) vs Pure Monotherapy (n=1717),Urinary Retention,23/190 (12.1%),101/1717 (5.9%),2.2,1.36,3.56
+2. Excluding Clozapine (TRS Removed),Non-Clozapine Stratum 1 (n=190) vs Pure Monotherapy (n=1717),Gastroesophageal Reflux Disease,14/190 (7.4%),37/1717 (2.2%),3.61,1.92,6.81
+3. Zero Second Antipsychotic (AH/ACH Only),Cobenfy + Non-AP Antihistamine/Antichol. Only (n=28) vs Pure Monotherapy (n=1717),Urinary Retention,5/28 (17.9%),101/1717 (5.9%),3.48,1.3,9.34
+3. Zero Second Antipsychotic (AH/ACH Only),Cobenfy + Non-AP Antihistamine/Antichol. Only (n=28) vs Pure Monotherapy (n=1717),Composite Constipation / Urinary Retention / GERD,9/28 (32.1%),249/1717 (14.5%),2.79,1.25,6.24
+4. Deconfounding Hospitalization,"Non-Clozapine Stratum 1 (n=190) vs Pure Monotherapy (n=1717), Excluding Psych Relapse",Non-Psychiatric Hospitalization,14/190 (7.4%),102/1717 (5.9%),1.26,0.71,2.25
