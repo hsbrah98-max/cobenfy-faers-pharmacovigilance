@@ -2,13 +2,13 @@
 ====================================================================================================
 A. APA abstract length (limit: title 150, body 3,000 characters with spaces)
 ====================================================================================================
-Title: 126 chars (limit 150) -> PASS
-Body with section labels: 2926 chars (limit 3,000) -> PASS
-Body without section labels: 2884 chars
-  Background     446
-  Methods        902
-  Results       1221
-  Conclusion     354
+Title: 144 chars (limit 150) -> PASS
+Body with section labels: 2837 chars (limit 3,000) -> PASS
+Body without section labels: 2795 chars
+  Background     482
+  Methods        905
+  Results       1073
+  Conclusion     374
 
 ====================================================================================================
 B. Strict ACB=3 Cohort Reproduction
@@ -20,9 +20,9 @@ C. Primary Comparisons: Stratum 1 (n=260) vs Reference (n=1,724)
 ====================================================================================================
 Hospitalization (All-Cause)    47/260 (18.1%) vs 138/1724 (8.0%) | ROR 2.54 (1.77-3.64) | p=0.0000
 Non-Psychiatric Medical Hosp   29/260 (11.2%) vs 108/1724 (6.3%) | ROR 1.88 (1.22-2.89) | p=0.0057
-Psychiatric Relapse            57/260 (21.9%) vs 105/1724 (6.1%) | ROR 4.33 (3.04-6.17) | p=0.0000
-GERD                           15/260 (5.8%) vs 37/1724 (2.1%) | ROR 2.79 (1.51-5.16) | p=0.0025
+GI Hypomotility Composite      33/260 (12.7%) vs 129/1724 (7.5%) | ROR 1.80 (1.20-2.70) | p=0.0071
 Constipation                   29/260 (11.2%) vs 126/1724 (7.3%) | ROR 1.59 (1.04-2.44) | p=0.0353
+GERD                           15/260 (5.8%) vs 37/1724 (2.1%) | ROR 2.79 (1.51-5.16) | p=0.0025
 Urinary Retention              25/260 (9.6%) vs 103/1724 (6.0%) | ROR 1.67 (1.06-2.65) | p=0.0303
 Vomiting                       30/260 (11.5%) vs 307/1724 (17.8%) | ROR 0.60 (0.40-0.90) | p=0.0128
 
@@ -31,8 +31,9 @@ D. HCP-Only Comparisons: HCP S1 (n=222) vs HCP Reference (n=885)
 ====================================================================================================
 Hospitalization (All-Cause)    38/222 (17.1%) vs 75/885 (8.5%) | ROR 2.23 (1.46-3.40) | p=0.0003
 Non-Psychiatric Medical Hosp   26/222 (11.7%) vs 61/885 (6.9%) | ROR 1.79 (1.10-2.91) | p=0.0247
-GERD                           11/222 (5.0%) vs 14/885 (1.6%) | ROR 3.24 (1.45-7.25) | p=0.0086
+GI Hypomotility Composite      27/222 (12.2%) vs 37/885 (4.2%) | ROR 3.17 (1.89-5.34) | p=0.0000
 Constipation                   24/222 (10.8%) vs 34/885 (3.8%) | ROR 3.03 (1.76-5.23) | p=0.0001
+GERD                           11/222 (5.0%) vs 14/885 (1.6%) | ROR 3.24 (1.45-7.25) | p=0.0086
 Urinary Retention              23/222 (10.4%) vs 67/885 (7.6%) | ROR 1.41 (0.86-2.32) | p=0.1717
 Vomiting                       22/222 (9.9%) vs 132/885 (14.9%) | ROR 0.63 (0.39-1.01) | p=0.0646
 
@@ -40,17 +41,55 @@ Vomiting                       22/222 (9.9%) vs 132/885 (14.9%) | ROR 0.63 (0.39
 E. Active-Comparator Head-to-Head: Stratum 1 (n=260) vs Stratum 2 (n=164)
 ====================================================================================================
 Hospitalization (All-Cause)    47/260 (18.1%) vs 17/164 (10.4%) | ROR 1.91 (1.05-3.45) | p=0.0363
-Psychiatric Relapse            57/260 (21.9%) vs 21/164 (12.8%) | ROR 1.91 (1.11-3.29) | p=0.0204
 GERD                           15/260 (5.8%) vs 2/164 (1.2%) | ROR 4.96 (1.12-21.98) | p=0.0213
+GI Hypomotility Composite      33/260 (12.7%) vs 12/164 (7.3%) | ROR 1.84 (0.92-3.68) | p=0.1047
 Constipation                   29/260 (11.2%) vs 11/164 (6.7%) | ROR 1.75 (0.85-3.60) | p=0.1717
 
 ====================================================================================================
-F. Capsule Titration Stoichiometry (n=1,266 with dose stage)
+E2. Stratum 2 (n=164) vs Reference (n=1,724): expected null
 ====================================================================================================
-50/20 vs (100/20+125/30) Urinary Retention: 32/327 (9.8%) vs 51/939 (5.4%) | ROR 1.89 (1.19-3.00) | p=0.0090
-100/20 vs 50/20 Hospitalization:            50/426 (11.7%) vs 15/327 (4.6%) | ROR 2.77 (1.52-5.02) | p=0.0006
+Hospitalization (All-Cause)    17/164 (10.4%) vs 138/1724 (8.0%) | ROR 1.33 (0.78-2.26) | p=0.2967
+Non-Psychiatric Medical Hosp   12/164 (7.3%) vs 108/1724 (6.3%) | ROR 1.18 (0.64-2.19) | p=0.6140
+GI Hypomotility Composite      12/164 (7.3%) vs 129/1724 (7.5%) | ROR 0.98 (0.53-1.80) | p=1.0000
+Constipation                   11/164 (6.7%) vs 126/1724 (7.3%) | ROR 0.91 (0.48-1.73) | p=0.8757
+GERD                           2/164 (1.2%) vs 37/1724 (2.1%) | ROR 0.56 (0.13-2.36) | p=0.5739
+Urinary Retention              9/164 (5.5%) vs 103/1724 (6.0%) | ROR 0.91 (0.45-1.84) | p=1.0000
+
+====================================================================================================
+F. LAI (reporter-named) vs no LAI among AP-cotreated reports, re-derived from raw
+====================================================================================================
+LAI n=49 (S1 18) | no-LAI n=354 (S1 221)
+GI Hypomotility Composite      all: 4/49 (8.2%) vs 39/354 (11.0%) | ROR 0.72 (0.24-2.10) | p=0.8043
+                               S2:  3/31 (9.7%) vs 9/133 (6.8%) | ROR 1.48 (0.38-5.81) | p=0.7002
+GERD                           all: 0/49 (0.0%) vs 16/354 (4.5%) | ROR n/a | p=0.2368
+                               S2:  0/31 (0.0%) vs 2/133 (1.5%) | ROR n/a | p=1.0000
+Hospitalization (All-Cause)    all: 10/49 (20.4%) vs 50/354 (14.1%) | ROR 1.56 (0.73-3.32) | p=0.2825
+                               S2:  6/31 (19.4%) vs 11/133 (8.3%) | ROR 2.66 (0.90-7.87) | p=0.0964
+Matches analysis_summary.json (LAI GI): True
+
+====================================================================================================
+F2. Sex/Age Demographic Subgroups (from analysis_summary.json)
+====================================================================================================
+female_vs_male_nausea        Overall: 173/678 (25.52%) vs 169/968 (17.46%) | ROR 1.62 (1.27-2.06), p=0.0001 | HCP: 72/330 (21.82%) vs 82/505 (16.24%) | ROR 1.44 (1.01-2.05), p=0.0449
+female_vs_male_vomiting      Overall: 141/678 (20.80%) vs 146/968 (15.08%) | ROR 1.48 (1.14-1.91), p=0.0030 | HCP: 50/330 (15.15%) vs 58/505 (11.49%) | ROR 1.38 (0.92-2.07), p=0.1397
+age_60_vs_18_59_uret         Overall: 17/143 (11.89%) vs 59/933 (6.32%) | ROR 2.00 (1.13-3.54), p=0.0218 | HCP: 10/34 (29.41%) vs 30/304 (9.87%) | ROR 3.81 (1.66-8.71), p=0.0028
+older_men_60_vs_others_uret  Overall: 10/57 (17.54%) vs 66/986 (6.69%) | ROR 2.97 (1.43-6.13), p=0.0060 | HCP: 7/12 (58.33%) vs 33/311 (10.61%) | ROR 11.79 (3.54-39.28), p=0.0001
 
 ====================================================================================================
 G. Figure 2 Dynamic JSON Verification
 ====================================================================================================
 generate_figures.py reads dynamically from analysis_summary.json: True
+
+====================================================================================================
+H. Negative Control Outcomes: Stratum 1 vs Reference (expected null)
+====================================================================================================
+Composite (any of 5)           5/260 (1.9%) vs 25/1724 (1.5%) | ROR 1.33 (0.51-3.51) | p=0.5820
+Composite, HCP-only            3/222 (1.4%) vs 13/885 (1.5%) | ROR 0.92 (0.26-3.25) | p=1.0000
+Composite, Stratum 2 vs Ref    7/164 (4.3%) vs 25/1724 (1.5%) | ROR 3.03 (1.29-7.12) | p=0.0171
+  ARTHRALGIA                         total events in N=2148: 2
+  BACK PAIN                          total events in N=2148: 2
+  NASOPHARYNGITIS                    total events in N=2148: 2
+  PRURITUS                           total events in N=2148: 8
+  RASH                               total events in N=2148: 21
+  RASH ERYTHEMATOUS                  total events in N=2148: 1
+  RASH PRURITIC                      total events in N=2148: 2

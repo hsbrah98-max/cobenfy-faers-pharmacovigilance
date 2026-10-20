@@ -9,8 +9,12 @@
   "n_hcp_s2": 126,
   "n_hcp_mono": 885,
   "n_nocloz_s1": 162,
-  "n_lai": 119,
-  "n_oral_ap": 284,
+  "n_lai": 49,
+  "n_oral_ap": 354,
+  "n_lai_s1": 18,
+  "n_oral_ap_s1": 221,
+  "n_lai_s2": 31,
+  "n_oral_ap_s2": 133,
   "n_female": 678,
   "n_male": 968,
   "n_age_60": 143,
@@ -21,7 +25,7 @@
     "Strong Antimuscarinic Antipsychotics (ACB 3)": 218,
     "Non-Antimuscarinic D2/5-HT2A Antipsychotics": 256,
     "Systemic Antimuscarinics & ACB-3 Antidepressants": 47,
-    "Long-Acting Injectable (LAI) Antipsychotics": 119,
+    "Long-Acting Injectable (LAI) Antipsychotics": 49,
     "1st-Gen Antimuscarinic Antihistamines (ACB 3)": 35
   },
   "specific_counts": {
@@ -237,40 +241,40 @@
         "bh_q": 0.0152
       },
       "d2_vs_mono": {
-        "a": 11,
+        "a": 12,
         "n1": 164,
-        "pct1": 6.71,
+        "pct1": 7.32,
         "c": 129,
         "n0": 1724,
         "pct0": 7.48,
-        "ror": 0.89,
-        "ci_l": 0.47,
-        "ci_u": 1.68,
-        "p_val": 0.8759
+        "ror": 0.98,
+        "ci_l": 0.53,
+        "ci_u": 1.8,
+        "p_val": 1.0
       },
       "all_poly_vs_mono": {
-        "a": 44,
+        "a": 45,
         "n1": 424,
-        "pct1": 10.38,
+        "pct1": 10.61,
         "c": 129,
         "n0": 1724,
         "pct0": 7.48,
-        "ror": 1.43,
-        "ci_l": 1.0,
-        "ci_u": 2.05,
-        "p_val": 0.058
+        "ror": 1.47,
+        "ci_l": 1.03,
+        "ci_u": 2.1,
+        "p_val": 0.0372
       },
       "s1_vs_s2_h2h": {
         "a": 33,
         "n1": 260,
         "pct1": 12.69,
-        "c": 11,
+        "c": 12,
         "n0": 164,
-        "pct0": 6.71,
-        "ror": 2.02,
-        "ci_l": 0.99,
-        "ci_u": 4.12,
-        "p_val": 0.0512
+        "pct0": 7.32,
+        "ror": 1.84,
+        "ci_l": 0.92,
+        "ci_u": 3.68,
+        "p_val": 0.1047
       },
       "hcp_ach_vs_mono": {
         "a": 27,
@@ -297,14 +301,14 @@
         "p_val": 0.0214
       },
       "multivariable_logit": {
-        "s1_aror": 2.49,
-        "s1_ci_l": 1.62,
-        "s1_ci_u": 3.85,
+        "s1_aror": 2.51,
+        "s1_ci_l": 1.63,
+        "s1_ci_u": 3.88,
         "s1_p": 0.0,
-        "s2_aror": 1.12,
-        "s2_ci_l": 0.59,
-        "s2_ci_u": 2.14,
-        "s2_p": 0.7331,
+        "s2_aror": 1.24,
+        "s2_ci_l": 0.66,
+        "s2_ci_u": 2.31,
+        "s2_p": 0.5054,
         "s1_bh_q": 0.0
       }
     },
@@ -1353,109 +1357,406 @@
       }
     }
   ],
+  "negative_controls": [
+    {
+      "label": "Negative Control Composite (Any of 5)",
+      "ach_vs_mono": {
+        "a": 5,
+        "n1": 260,
+        "pct1": 1.92,
+        "c": 25,
+        "n0": 1724,
+        "pct0": 1.45,
+        "ror": 1.33,
+        "ci_l": 0.51,
+        "ci_u": 3.51,
+        "p_val": 0.582
+      },
+      "d2_vs_mono": {
+        "a": 7,
+        "n1": 164,
+        "pct1": 4.27,
+        "c": 25,
+        "n0": 1724,
+        "pct0": 1.45,
+        "ror": 3.03,
+        "ci_l": 1.29,
+        "ci_u": 7.12,
+        "p_val": 0.0171
+      },
+      "hcp_ach_vs_mono": {
+        "a": 3,
+        "n1": 222,
+        "pct1": 1.35,
+        "c": 13,
+        "n0": 885,
+        "pct0": 1.47,
+        "ror": 0.92,
+        "ci_l": 0.26,
+        "ci_u": 3.25,
+        "p_val": 1.0
+      },
+      "multivariable_logit": {
+        "s1_aror": 1.49,
+        "s1_ci_l": 0.55,
+        "s1_ci_u": 4.05,
+        "s1_p": 0.4379,
+        "s2_aror": 3.29,
+        "s2_ci_l": 1.37,
+        "s2_ci_u": 7.89,
+        "s2_p": 0.0077
+      }
+    },
+    {
+      "label": "Negative Control: Rash",
+      "ach_vs_mono": {
+        "a": 3,
+        "n1": 260,
+        "pct1": 1.15,
+        "c": 16,
+        "n0": 1724,
+        "pct0": 0.93,
+        "ror": 1.25,
+        "ci_l": 0.36,
+        "ci_u": 4.31,
+        "p_val": 0.7294
+      },
+      "d2_vs_mono": {
+        "a": 4,
+        "n1": 164,
+        "pct1": 2.44,
+        "c": 16,
+        "n0": 1724,
+        "pct0": 0.93,
+        "ror": 2.67,
+        "ci_l": 0.88,
+        "ci_u": 8.08,
+        "p_val": 0.0887
+      },
+      "hcp_ach_vs_mono": {
+        "a": 3,
+        "n1": 222,
+        "pct1": 1.35,
+        "c": 11,
+        "n0": 885,
+        "pct0": 1.24,
+        "ror": 1.09,
+        "ci_l": 0.3,
+        "ci_u": 3.94,
+        "p_val": 1.0
+      },
+      "multivariable_logit": {
+        "s1_aror": 1.02,
+        "s1_ci_l": 0.29,
+        "s1_ci_u": 3.61,
+        "s1_p": 0.9748,
+        "s2_aror": 2.29,
+        "s2_ci_l": 0.75,
+        "s2_ci_u": 7.05,
+        "s2_p": 0.148
+      }
+    },
+    {
+      "label": "Negative Control: Upper Respiratory Infection",
+      "ach_vs_mono": {
+        "a": 0,
+        "n1": 260,
+        "pct1": 0.0,
+        "c": 2,
+        "n0": 1724,
+        "pct0": 0.12,
+        "ror": 0.0,
+        "ci_l": 0.0,
+        "ci_u": 0.0,
+        "p_val": 1.0
+      },
+      "d2_vs_mono": {
+        "a": 0,
+        "n1": 164,
+        "pct1": 0.0,
+        "c": 2,
+        "n0": 1724,
+        "pct0": 0.12,
+        "ror": 0.0,
+        "ci_l": 0.0,
+        "ci_u": 0.0,
+        "p_val": 1.0
+      },
+      "hcp_ach_vs_mono": {
+        "a": 0,
+        "n1": 222,
+        "pct1": 0.0,
+        "c": 0,
+        "n0": 885,
+        "pct0": 0.0,
+        "ror": 0.0,
+        "ci_l": 0.0,
+        "ci_u": 0.0,
+        "p_val": 1.0
+      },
+      "multivariable_logit": null
+    },
+    {
+      "label": "Negative Control: Arthralgia",
+      "ach_vs_mono": {
+        "a": 0,
+        "n1": 260,
+        "pct1": 0.0,
+        "c": 1,
+        "n0": 1724,
+        "pct0": 0.06,
+        "ror": 0.0,
+        "ci_l": 0.0,
+        "ci_u": 0.0,
+        "p_val": 1.0
+      },
+      "d2_vs_mono": {
+        "a": 1,
+        "n1": 164,
+        "pct1": 0.61,
+        "c": 1,
+        "n0": 1724,
+        "pct0": 0.06,
+        "ror": 10.57,
+        "ci_l": 0.66,
+        "ci_u": 169.79,
+        "p_val": 0.1662
+      },
+      "hcp_ach_vs_mono": {
+        "a": 0,
+        "n1": 222,
+        "pct1": 0.0,
+        "c": 0,
+        "n0": 885,
+        "pct0": 0.0,
+        "ror": 0.0,
+        "ci_l": 0.0,
+        "ci_u": 0.0,
+        "p_val": 1.0
+      },
+      "multivariable_logit": null
+    },
+    {
+      "label": "Negative Control: Back Pain",
+      "ach_vs_mono": {
+        "a": 1,
+        "n1": 260,
+        "pct1": 0.38,
+        "c": 0,
+        "n0": 1724,
+        "pct0": 0.0,
+        "ror": null,
+        "ci_l": null,
+        "ci_u": null,
+        "p_val": 0.131
+      },
+      "d2_vs_mono": {
+        "a": 1,
+        "n1": 164,
+        "pct1": 0.61,
+        "c": 0,
+        "n0": 1724,
+        "pct0": 0.0,
+        "ror": null,
+        "ci_l": null,
+        "ci_u": null,
+        "p_val": 0.0869
+      },
+      "hcp_ach_vs_mono": {
+        "a": 0,
+        "n1": 222,
+        "pct1": 0.0,
+        "c": 0,
+        "n0": 885,
+        "pct0": 0.0,
+        "ror": 0.0,
+        "ci_l": 0.0,
+        "ci_u": 0.0,
+        "p_val": 1.0
+      },
+      "multivariable_logit": null
+    },
+    {
+      "label": "Negative Control: Pruritus",
+      "ach_vs_mono": {
+        "a": 1,
+        "n1": 260,
+        "pct1": 0.38,
+        "c": 6,
+        "n0": 1724,
+        "pct0": 0.35,
+        "ror": 1.11,
+        "ci_l": 0.13,
+        "ci_u": 9.22,
+        "p_val": 1.0
+      },
+      "d2_vs_mono": {
+        "a": 1,
+        "n1": 164,
+        "pct1": 0.61,
+        "c": 6,
+        "n0": 1724,
+        "pct0": 0.35,
+        "ror": 1.76,
+        "ci_l": 0.21,
+        "ci_u": 14.68,
+        "p_val": 0.4712
+      },
+      "hcp_ach_vs_mono": {
+        "a": 0,
+        "n1": 222,
+        "pct1": 0.0,
+        "c": 2,
+        "n0": 885,
+        "pct0": 0.23,
+        "ror": 0.0,
+        "ci_l": 0.0,
+        "ci_u": 0.0,
+        "p_val": 1.0
+      },
+      "multivariable_logit": {
+        "s1_aror": 1.59,
+        "s1_ci_l": 0.17,
+        "s1_ci_u": 14.47,
+        "s1_p": 0.6804,
+        "s2_aror": 2.28,
+        "s2_ci_l": 0.26,
+        "s2_ci_u": 19.84,
+        "s2_p": 0.456
+      }
+    }
+  ],
   "clinical_subgroups": {
     "lai_vs_oral_ap_gi_hypo": {
       "overall": {
-        "a": 5,
-        "n1": 119,
-        "pct1": 4.2,
-        "c": 37,
-        "n0": 284,
-        "pct0": 13.03,
-        "ror": 0.29,
-        "ci_l": 0.11,
-        "ci_u": 0.76,
-        "p_val": 0.007
+        "a": 4,
+        "n1": 49,
+        "pct1": 8.16,
+        "c": 39,
+        "n0": 354,
+        "pct0": 11.02,
+        "ror": 0.72,
+        "ci_l": 0.24,
+        "ci_u": 2.1,
+        "p_val": 0.8043
       },
       "hcp_only": {
-        "a": 5,
-        "n1": 101,
-        "pct1": 4.95,
-        "c": 29,
-        "n0": 233,
-        "pct0": 12.45,
-        "ror": 0.37,
-        "ci_l": 0.14,
-        "ci_u": 0.98,
-        "p_val": 0.0474
+        "a": 3,
+        "n1": 40,
+        "pct1": 7.5,
+        "c": 31,
+        "n0": 294,
+        "pct0": 10.54,
+        "ror": 0.69,
+        "ci_l": 0.2,
+        "ci_u": 2.36,
+        "p_val": 0.781
       }
     },
     "oral_ap_vs_lai_gi_hypo": {
       "overall": {
-        "a": 37,
-        "n1": 284,
-        "pct1": 13.03,
-        "c": 5,
-        "n0": 119,
-        "pct0": 4.2,
-        "ror": 3.42,
-        "ci_l": 1.31,
-        "ci_u": 8.92,
-        "p_val": 0.007
+        "a": 39,
+        "n1": 354,
+        "pct1": 11.02,
+        "c": 4,
+        "n0": 49,
+        "pct0": 8.16,
+        "ror": 1.39,
+        "ci_l": 0.48,
+        "ci_u": 4.08,
+        "p_val": 0.8043
       },
       "hcp_only": {
-        "a": 29,
-        "n1": 233,
-        "pct1": 12.45,
-        "c": 5,
-        "n0": 101,
-        "pct0": 4.95,
-        "ror": 2.73,
-        "ci_l": 1.02,
-        "ci_u": 7.27,
-        "p_val": 0.0474
+        "a": 31,
+        "n1": 294,
+        "pct1": 10.54,
+        "c": 3,
+        "n0": 40,
+        "pct0": 7.5,
+        "ror": 1.45,
+        "ci_l": 0.42,
+        "ci_u": 4.99,
+        "p_val": 0.781
       }
     },
     "lai_vs_oral_ap_gerd": {
       "overall": {
         "a": 0,
-        "n1": 119,
+        "n1": 49,
         "pct1": 0.0,
         "c": 16,
-        "n0": 284,
-        "pct0": 5.63,
+        "n0": 354,
+        "pct0": 4.52,
         "ror": 0.0,
         "ci_l": 0.0,
         "ci_u": 0.0,
-        "p_val": 0.0043
+        "p_val": 0.2368
       },
       "hcp_only": {
         "a": 0,
-        "n1": 101,
+        "n1": 40,
         "pct1": 0.0,
         "c": 12,
-        "n0": 233,
-        "pct0": 5.15,
+        "n0": 294,
+        "pct0": 4.08,
         "ror": 0.0,
         "ci_l": 0.0,
         "ci_u": 0.0,
-        "p_val": 0.021
+        "p_val": 0.3733
       }
     },
     "lai_vs_oral_ap_hosp": {
       "overall": {
-        "a": 19,
-        "n1": 119,
-        "pct1": 15.97,
-        "c": 41,
-        "n0": 284,
-        "pct0": 14.44,
-        "ror": 1.13,
-        "ci_l": 0.62,
-        "ci_u": 2.03,
-        "p_val": 0.7592
+        "a": 10,
+        "n1": 49,
+        "pct1": 20.41,
+        "c": 50,
+        "n0": 354,
+        "pct0": 14.12,
+        "ror": 1.56,
+        "ci_l": 0.73,
+        "ci_u": 3.32,
+        "p_val": 0.2825
       },
       "hcp_only": {
-        "a": 13,
-        "n1": 101,
-        "pct1": 12.87,
-        "c": 33,
-        "n0": 233,
-        "pct0": 14.16,
-        "ror": 0.9,
-        "ci_l": 0.45,
-        "ci_u": 1.78,
-        "p_val": 0.8633
+        "a": 6,
+        "n1": 40,
+        "pct1": 15.0,
+        "c": 40,
+        "n0": 294,
+        "pct0": 13.61,
+        "ror": 1.12,
+        "ci_l": 0.44,
+        "ci_u": 2.84,
+        "p_val": 0.8074
+      }
+    },
+    "lai_vs_oral_ap_gi_hypo_s2": {
+      "overall": {
+        "a": 3,
+        "n1": 31,
+        "pct1": 9.68,
+        "c": 9,
+        "n0": 133,
+        "pct0": 6.77,
+        "ror": 1.48,
+        "ci_l": 0.38,
+        "ci_u": 5.81,
+        "p_val": 0.7002
+      }
+    },
+    "lai_vs_oral_ap_gerd_s2": {
+      "overall": {
+        "a": 0,
+        "n1": 31,
+        "pct1": 0.0,
+        "c": 2,
+        "n0": 133,
+        "pct0": 1.5,
+        "ror": 0.0,
+        "ci_l": 0.0,
+        "ci_u": 0.0,
+        "p_val": 1.0
       }
     },
     "female_vs_male_nausea": {

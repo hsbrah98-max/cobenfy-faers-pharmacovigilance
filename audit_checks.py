@@ -1,23 +1,24 @@
 #!/usr/bin/env python3
 """
-Independent audit of the updated Cobenfy FAERS polypharmacy analysis.
+Independent audit of the unified Cobenfy FAERS polypharmacy, antipsychotic route,
+and demographic risk stratification analysis.
 
 Re-derives every headline claim from data/cobenfy_faers_raw.json and verifies:
   A. APA abstract character count (< 3,000 characters with spaces)
   B. Strict ACB=3 cohort reproduction (2,148 / 260 / 164 / 1,724)
-  C. Exact match of all p-values and RORs quoted in the abstract
-  D. Benjamini-Hochberg q-values and fragility indices
-  E. Healthcare-professional (HCP)-only stratified checks (222 vs. 885)
-  F. Head-to-head Stratum 1 vs. Stratum 2 active-comparator checks (260 vs. 164)
-  G. Capsule titration stoichiometry (50/20 vs. 100/20 vs. 125/30 mg, n=1,266)
-  H. PubMed reference verification
+  C. Primary & Multivariable 4-model comparisons (Crude, aROR, HCP-only, No-Clozapine)
+  D. Healthcare-professional (HCP)-only stratified checks (222 vs. 885)
+  E. Head-to-head Stratum 1 vs. Stratum 2 active-comparator checks (260 vs. 164)
+  E2. Stratum 2 vs. Reference (164 vs. 1,724): the GI signal should be absent
+  F. Clinical Subgroups: LAI AP (reporter-named, n=49) vs. no LAI (n=354), re-derived here
+     and repeated within Stratum 2; Sex/Age Demographics from the summary
+  G. Dynamic JSON verification for generate_figures.py
+  H. Negative control outcomes (Stratum 1 vs. Reference)
 """
 import json
 import math
 import os
 import re
-import urllib.request
-from collections import Counter
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 RAW = os.path.join(BASE, "data", "cobenfy_faers_raw.json")
@@ -52,6 +53,19 @@ SYSTEMIC_ACH = {
 PSYCH = {
     "PSYCHOTIC DISORDER", "SCHIZOPHRENIA", "CONDITION AGGRAVATED", "PSYCHOTIC SYMPTOM",
     "HALLUCINATION", "HALLUCINATION, AUDITORY", "DELUSION", "PARANOIA", "AGITATION",
+}
+LAI_KW = {
+    "SUSTENNA", "TRINZA", "HAFYERA", "MAINTENA", "ASIMTUFII", "ARISTADA",
+    "LAUROXIL", "UZEDY", "PERSERIS", "CONSTA", "PALMITATE", "DECANOATE", "RELPREVV",
+}
+NEG_CONTROL = {
+    "RASH", "RASH PRURITIC", "RASH ERYTHEMATOUS", "RASH MACULO-PAPULAR",
+    "UPPER RESPIRATORY TRACT INFECTION", "NASOPHARYNGITIS", "ARTHRALGIA", "BACK PAIN", "PRURITUS",
+}
+GI_HYPO = {
+    "CONSTIPATION", "ILEUS", "PARALYTIC ILEUS", "ILEUS PARALYTIC", "INTESTINAL OBSTRUCTION",
+    "SMALL INTESTINAL OBSTRUCTION", "LARGE INTESTINAL OBSTRUCTION",
+    "GASTROINTESTINAL HYPOMOTILITY", "FAECALOMA",
 }
 
 
@@ -111,43 +125,43 @@ def main():
     paras = [p.strip().replace("**", "") for p in block.split("\n") if p.strip() and not p.strip().startswith("*(")]
     body = "\n".join(paras)
     no_labels = "\n".join(re.sub(r"^(Background|Methods|Results|Conclusion):\s*", "", p) for p in paras)
-    print("Title: %d chars (limit 150) -> PASS" % len(title))
+    print("Title: %d chars (limit 150) -> %s" % (len(title), "PASS" if len(title) <= 150 else "FAIL"))
     print("Body with section labels: %d chars (limit 3,000) -> %s" % (len(body), "PASS" if len(body) <= 3000 else "FAIL"))
     print("Body without section labels: %d chars" % len(no_labels))
     for p in paras:
         print("  %-12s %5d" % (p.split(":")[0], len(p)))
 
     raw = json.load(open(RAW))
+    summary = json.load(open(SUMMARY))
     recs = {r["safetyreportid"]: r for r in raw["records"]}
     cases = []
     for sid, r in recs.items():
         p = r.get("patient", {})
         dn = set()
-        doses = []
+        reported = set()
         for d in p.get("drug", []):
             mp = (d.get("medicinalproduct") or "").upper()
             if mp:
                 dn.add(mp)
+                reported.add(mp)
             of = d.get("openfda", {})
             for g in of.get("generic_name", []):
                 dn.add(g.upper())
             for b in of.get("brand_name", []):
                 dn.add(b.upper())
-            if "COBENFY" in mp or "XANOMELINE" in mp:
-                doses.append((d.get("drugdosagetext") or "").upper())
         ps = r.get("primarysource") or {}
         pts = {(x.get("reactionmeddrapt") or "").upper() for x in p.get("reaction", [])}
         hosp = str(r.get("seriousnesshospitalization", "")) == "1"
         hcp = str(ps.get("qualification", "")) in ("1", "2", "3")
-        dose_str = " ".join(doses)
-        stage = "125/30" if "125" in dose_str else ("100/20" if "100" in dose_str else ("50/20" if "50" in dose_str else "Unknown"))
         is_s1 = matches(dn, STRONG_ANTI_M_AP | FIRST_GEN_AH | SYSTEMIC_ACH)
         is_s2 = (not is_s1) and matches(dn, NON_ANTI_M_AP)
         cases.append({
-            "sid": sid, "dn": dn, "pts": pts, "hosp": hosp, "hcp": hcp, "stage": stage,
+            "sid": sid, "dn": dn, "pts": pts, "hosp": hosp, "hcp": hcp,
             "psych_relapse": bool(pts & PSYCH),
             "nonpsych_hosp": hosp and not bool(pts & PSYCH),
             "stratum": "S1" if is_s1 else ("S2" if is_s2 else "MONO"),
+            "any_ap": matches(dn, STRONG_ANTI_M_AP | NON_ANTI_M_AP),
+            "lai": matches(reported, LAI_KW),
         })
 
     S1 = [c for c in cases if c["stratum"] == "S1"]
@@ -161,9 +175,9 @@ def main():
     for lab, fn in [
         ("Hospitalization (All-Cause)", lambda c: c["hosp"]),
         ("Non-Psychiatric Medical Hosp", lambda c: c["nonpsych_hosp"]),
-        ("Psychiatric Relapse", lambda c: c["psych_relapse"]),
-        ("GERD", lambda c: "GASTROOESOPHAGEAL REFLUX DISEASE" in c["pts"]),
+        ("GI Hypomotility Composite", lambda c: bool(c["pts"] & GI_HYPO)),
         ("Constipation", lambda c: "CONSTIPATION" in c["pts"]),
+        ("GERD", lambda c: "GASTROOESOPHAGEAL REFLUX DISEASE" in c["pts"]),
         ("Urinary Retention", lambda c: "URINARY RETENTION" in c["pts"]),
         ("Vomiting", lambda c: "VOMITING" in c["pts"]),
     ]:
@@ -175,8 +189,9 @@ def main():
     for lab, fn in [
         ("Hospitalization (All-Cause)", lambda c: c["hosp"]),
         ("Non-Psychiatric Medical Hosp", lambda c: c["nonpsych_hosp"]),
-        ("GERD", lambda c: "GASTROOESOPHAGEAL REFLUX DISEASE" in c["pts"]),
+        ("GI Hypomotility Composite", lambda c: bool(c["pts"] & GI_HYPO)),
         ("Constipation", lambda c: "CONSTIPATION" in c["pts"]),
+        ("GERD", lambda c: "GASTROOESOPHAGEAL REFLUX DISEASE" in c["pts"]),
         ("Urinary Retention", lambda c: "URINARY RETENTION" in c["pts"]),
         ("Vomiting", lambda c: "VOMITING" in c["pts"]),
     ]:
@@ -185,23 +200,70 @@ def main():
     section("E. Active-Comparator Head-to-Head: Stratum 1 (n=260) vs Stratum 2 (n=164)")
     for lab, fn in [
         ("Hospitalization (All-Cause)", lambda c: c["hosp"]),
-        ("Psychiatric Relapse", lambda c: c["psych_relapse"]),
         ("GERD", lambda c: "GASTROOESOPHAGEAL REFLUX DISEASE" in c["pts"]),
+        ("GI Hypomotility Composite", lambda c: bool(c["pts"] & GI_HYPO)),
         ("Constipation", lambda c: "CONSTIPATION" in c["pts"]),
     ]:
         print("%-30s %s" % (lab, fmt(tbt(S1, S2, fn))))
 
-    section("F. Capsule Titration Stoichiometry (n=1,266 with dose stage)")
-    c50 = [c for c in cases if c["stage"] == "50/20"]
-    c100 = [c for c in cases if c["stage"] == "100/20"]
-    c125 = [c for c in cases if c["stage"] == "125/30"]
-    print("50/20 vs (100/20+125/30) Urinary Retention:", fmt(tbt(c50, c100 + c125, lambda c: "URINARY RETENTION" in c["pts"])))
-    print("100/20 vs 50/20 Hospitalization:           ", fmt(tbt(c100, c50, lambda c: c["hosp"])))
+    section("E2. Stratum 2 (n=164) vs Reference (n=1,724): expected null")
+    for lab, fn in [
+        ("Hospitalization (All-Cause)", lambda c: c["hosp"]),
+        ("Non-Psychiatric Medical Hosp", lambda c: c["nonpsych_hosp"]),
+        ("GI Hypomotility Composite", lambda c: bool(c["pts"] & GI_HYPO)),
+        ("Constipation", lambda c: "CONSTIPATION" in c["pts"]),
+        ("GERD", lambda c: "GASTROOESOPHAGEAL REFLUX DISEASE" in c["pts"]),
+        ("Urinary Retention", lambda c: "URINARY RETENTION" in c["pts"]),
+    ]:
+        print("%-30s %s" % (lab, fmt(tbt(S2, MONO, fn))))
+
+    section("F. LAI (reporter-named) vs no LAI among AP-cotreated reports, re-derived from raw")
+    lai = [c for c in cases if c["lai"]]
+    oral = [c for c in cases if c["any_ap"] and not c["lai"]]
+    print("LAI n=%d (S1 %d) | no-LAI n=%d (S1 %d)" % (len(lai), sum(c["stratum"] == "S1" for c in lai),
+                                                    len(oral), sum(c["stratum"] == "S1" for c in oral)))
+    for lab, fn in [
+        ("GI Hypomotility Composite", lambda c: bool(c["pts"] & GI_HYPO)),
+        ("GERD", lambda c: "GASTROOESOPHAGEAL REFLUX DISEASE" in c["pts"]),
+        ("Hospitalization (All-Cause)", lambda c: c["hosp"]),
+    ]:
+        print("%-30s all: %s" % (lab, fmt(tbt(lai, oral, fn))))
+        print("%-30s S2:  %s" % ("", fmt(tbt([c for c in lai if c["stratum"] == "S2"], [c for c in oral if c["stratum"] == "S2"], fn))))
+    ov = summary["clinical_subgroups"]["lai_vs_oral_ap_gi_hypo"]["overall"]
+    print("Matches analysis_summary.json (LAI GI):", (ov["a"], ov["n1"]) == (sum(bool(c["pts"] & GI_HYPO) for c in lai), len(lai)))
+
+    section("F2. Sex/Age Demographic Subgroups (from analysis_summary.json)")
+    sub = summary["clinical_subgroups"]
+    for key in [
+        "female_vs_male_nausea",
+        "female_vs_male_vomiting",
+        "age_60_vs_18_59_uret",
+        "older_men_60_vs_others_uret",
+    ]:
+        blk = sub[key]
+        ov = blk["overall"]
+        hc = blk["hcp_only"]
+        print("%-28s Overall: %d/%d (%.2f%%) vs %d/%d (%.2f%%) | ROR %.2f (%.2f-%.2f), p=%.4f | HCP: %d/%d (%.2f%%) vs %d/%d (%.2f%%) | ROR %.2f (%.2f-%.2f), p=%.4f" % (
+            key, ov["a"], ov["n1"], ov["pct1"], ov["c"], ov["n0"], ov["pct0"],
+            ov["ror"], ov["ci_l"], ov["ci_u"], ov["p_val"],
+            hc["a"], hc["n1"], hc["pct1"], hc["c"], hc["n0"], hc["pct0"],
+            hc["ror"], hc["ci_l"], hc["ci_u"], hc["p_val"]
+        ))
 
     section("G. Figure 2 Dynamic JSON Verification")
     g_code = open(os.path.join(BASE, "generate_figures.py")).read()
     has_hardcoded = "ach_rates = [17.4" in g_code or '("Clozapine (Anti-M SGA)", 98' in g_code
     print("generate_figures.py reads dynamically from analysis_summary.json:", not has_hardcoded)
+
+    section("H. Negative Control Outcomes: Stratum 1 vs Reference (expected null)")
+    neg = lambda c: bool(c["pts"] & NEG_CONTROL)
+    print("%-30s %s" % ("Composite (any of 5)", fmt(tbt(S1, MONO, neg))))
+    print("%-30s %s" % ("Composite, HCP-only", fmt(tbt(hS1, hM, neg))))
+    print("%-30s %s" % ("Composite, Stratum 2 vs Ref", fmt(tbt(S2, MONO, neg))))
+    for term in sorted(NEG_CONTROL):
+        n = sum(term in c["pts"] for c in cases)
+        if n:
+            print("  %-34s total events in N=%d: %d" % (term, len(cases), n))
 
 
 if __name__ == "__main__":

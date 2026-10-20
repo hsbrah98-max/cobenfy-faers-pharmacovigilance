@@ -1,8 +1,64 @@
-Sensitivity_Analysis,Comparison_Groups,Endpoint,Exposed_n_N_Pct,Reference_n_N_Pct,ROR,CI_95_Lower,CI_95_Upper
-1. Polypharmacy vs Polypharmacy,Stratum 1 (n=288) vs Stratum 2 D2-AP Only (n=143),Composite Constipation / Urinary Retention / GERD,57/288 (19.8%),16/143 (11.2%),1.96,1.08,3.55
-2. Excluding Clozapine (TRS Removed),Non-Clozapine Stratum 1 (n=190) vs Pure Monotherapy (n=1717),Constipation,25/190 (13.2%),125/1717 (7.3%),1.93,1.22,3.05
-2. Excluding Clozapine (TRS Removed),Non-Clozapine Stratum 1 (n=190) vs Pure Monotherapy (n=1717),Urinary Retention,23/190 (12.1%),101/1717 (5.9%),2.2,1.36,3.56
-2. Excluding Clozapine (TRS Removed),Non-Clozapine Stratum 1 (n=190) vs Pure Monotherapy (n=1717),Gastroesophageal Reflux Disease,14/190 (7.4%),37/1717 (2.2%),3.61,1.92,6.81
-3. Zero Second Antipsychotic (AH/ACH Only),Cobenfy + Non-AP Antihistamine/Antichol. Only (n=28) vs Pure Monotherapy (n=1717),Urinary Retention,5/28 (17.9%),101/1717 (5.9%),3.48,1.3,9.34
-3. Zero Second Antipsychotic (AH/ACH Only),Cobenfy + Non-AP Antihistamine/Antichol. Only (n=28) vs Pure Monotherapy (n=1717),Composite Constipation / Urinary Retention / GERD,9/28 (32.1%),249/1717 (14.5%),2.79,1.25,6.24
-4. Deconfounding Hospitalization,"Non-Clozapine Stratum 1 (n=190) vs Pure Monotherapy (n=1717), Excluding Psych Relapse",Non-Psychiatric Hospitalization,14/190 (7.4%),102/1717 (5.9%),1.26,0.71,2.25
+Sensitivity_Analysis,Endpoint,Exposed_n,Exposed_N,Exposed_Pct,ROR,CI_95_Lower,CI_95_Upper,p
+HCP-only: Stratum 1 vs Reference,Hospitalization (All-Cause),38,222,17.12,2.23,1.46,3.4,0.0003
+Non-clozapine Stratum 1 vs Reference,Hospitalization (All-Cause),27,162,16.67,2.3,1.47,3.6,0.0007
+Active comparator: Stratum 1 vs Stratum 2,Hospitalization (All-Cause),47,260,18.08,1.91,1.05,3.45,0.0363
+HCP-only: Stratum 1 vs Reference,Non-Psychiatric Medical Hospitalization,26,222,11.71,1.79,1.1,2.91,0.0247
+Non-clozapine Stratum 1 vs Reference,Non-Psychiatric Medical Hospitalization,15,162,9.26,1.53,0.87,2.69,0.136
+Active comparator: Stratum 1 vs Stratum 2,Non-Psychiatric Medical Hospitalization,29,260,11.15,1.59,0.79,3.21,0.2381
+HCP-only: Stratum 1 vs Reference,GI Hypomotility (Constipation / Ileus / Obstruction),27,222,12.16,3.17,1.89,5.34,0.0
+Non-clozapine Stratum 1 vs Reference,GI Hypomotility (Constipation / Ileus / Obstruction),21,162,12.96,1.84,1.13,3.01,0.0214
+Active comparator: Stratum 1 vs Stratum 2,GI Hypomotility (Constipation / Ileus / Obstruction),33,260,12.69,1.84,0.92,3.68,0.1047
+HCP-only: Stratum 1 vs Reference,Constipation (Single MedDRA PT),24,222,10.81,3.03,1.76,5.23,0.0001
+Non-clozapine Stratum 1 vs Reference,Constipation (Single MedDRA PT),21,162,12.96,1.89,1.15,3.09,0.0141
+Active comparator: Stratum 1 vs Stratum 2,Constipation (Single MedDRA PT),29,260,11.15,1.75,0.85,3.6,0.1717
+HCP-only: Stratum 1 vs Reference,Gastroesophageal Reflux Disease (GERD),11,222,4.95,3.24,1.45,7.25,0.0086
+Non-clozapine Stratum 1 vs Reference,Gastroesophageal Reflux Disease (GERD),13,162,8.02,3.98,2.07,7.65,0.0002
+Active comparator: Stratum 1 vs Stratum 2,Gastroesophageal Reflux Disease (GERD),15,260,5.77,4.96,1.12,21.98,0.0213
+HCP-only: Stratum 1 vs Reference,Urinary Retention (Nominal; Attenuates in HCP),23,222,10.36,1.41,0.86,2.32,0.1717
+Non-clozapine Stratum 1 vs Reference,Urinary Retention (Nominal; Attenuates in HCP),21,162,12.96,2.34,1.42,3.86,0.0023
+Active comparator: Stratum 1 vs Stratum 2,Urinary Retention (Nominal; Attenuates in HCP),25,260,9.62,1.83,0.83,4.03,0.1446
+HCP-only: Stratum 1 vs Reference,Blurred Vision,10,222,4.5,1.44,0.69,3.02,0.3079
+Non-clozapine Stratum 1 vs Reference,Blurred Vision,12,162,7.41,2.3,1.21,4.37,0.0155
+Active comparator: Stratum 1 vs Stratum 2,Blurred Vision,13,260,5.0,2.11,0.67,6.57,0.2154
+HCP-only: Stratum 1 vs Reference,Tachycardia / Heart Rate Increased,12,222,5.41,1.43,0.73,2.81,0.3452
+Non-clozapine Stratum 1 vs Reference,Tachycardia / Heart Rate Increased,8,162,4.94,1.52,0.71,3.24,0.2601
+Active comparator: Stratum 1 vs Stratum 2,Tachycardia / Heart Rate Increased,13,260,5.0,1.39,0.52,3.72,0.6331
+HCP-only: Stratum 1 vs Reference,Akathisia (Concomitant D2 Burden),8,222,3.6,33.05,4.11,265.65,0.0
+Non-clozapine Stratum 1 vs Reference,Akathisia (Concomitant D2 Burden),6,162,3.7,33.12,6.63,165.46,0.0
+Active comparator: Stratum 1 vs Stratum 2,Akathisia (Concomitant D2 Burden),8,260,3.08,0.84,0.28,2.45,0.7842
+HCP-only: Stratum 1 vs Reference,Sialorrhea + Drooling (Combined MedDRA PTs),11,222,4.95,1.6,0.78,3.26,0.2201
+Non-clozapine Stratum 1 vs Reference,Sialorrhea + Drooling (Combined MedDRA PTs),9,162,5.56,1.89,0.91,3.91,0.0987
+Active comparator: Stratum 1 vs Stratum 2,Sialorrhea + Drooling (Combined MedDRA PTs),14,260,5.38,0.88,0.38,2.02,0.8301
+HCP-only: Stratum 1 vs Reference,Salivary Hypersecretion (Clinician PT Only),9,222,4.05,4.11,1.61,10.49,0.004
+Non-clozapine Stratum 1 vs Reference,Salivary Hypersecretion (Clinician PT Only),5,162,3.09,3.89,1.38,10.94,0.019
+Active comparator: Stratum 1 vs Stratum 2,Salivary Hypersecretion (Clinician PT Only),10,260,3.85,1.27,0.43,3.79,0.7908
+HCP-only: Stratum 1 vs Reference,Weight Increased,7,222,3.15,14.37,2.97,69.69,0.0003
+Non-clozapine Stratum 1 vs Reference,Weight Increased,7,162,4.32,6.44,2.5,16.6,0.0006
+Active comparator: Stratum 1 vs Stratum 2,Weight Increased,8,260,3.08,2.57,0.54,12.26,0.3286
+HCP-only: Stratum 1 vs Reference,Nausea,47,222,21.17,0.99,0.69,1.42,1.0
+Non-clozapine Stratum 1 vs Reference,Nausea,36,162,22.22,1.0,0.68,1.48,1.0
+Active comparator: Stratum 1 vs Stratum 2,Nausea,56,260,21.54,1.98,1.14,3.44,0.0188
+HCP-only: Stratum 1 vs Reference,Vomiting (Nominal; Attenuates in HCP),22,222,9.91,0.63,0.39,1.01,0.0646
+Non-clozapine Stratum 1 vs Reference,Vomiting (Nominal; Attenuates in HCP),23,162,14.2,0.76,0.48,1.21,0.28
+Active comparator: Stratum 1 vs Stratum 2,Vomiting (Nominal; Attenuates in HCP),30,260,11.54,1.3,0.67,2.49,0.5182
+HCP-only: Stratum 1 vs Reference,Dyspepsia,2,222,0.9,0.44,0.1,1.9,0.3977
+Non-clozapine Stratum 1 vs Reference,Dyspepsia,3,162,1.85,0.4,0.13,1.29,0.1507
+Active comparator: Stratum 1 vs Stratum 2,Dyspepsia,5,260,1.92,3.2,0.37,27.6,0.4124
+Subgroup: lai_vs_oral_ap_gi_hypo (overall),lai_vs_oral_ap_gi_hypo,4,49,8.16,0.72,0.24,2.1,0.8043
+Subgroup: lai_vs_oral_ap_gi_hypo (hcp_only),lai_vs_oral_ap_gi_hypo,3,40,7.5,0.69,0.2,2.36,0.781
+Subgroup: oral_ap_vs_lai_gi_hypo (overall),oral_ap_vs_lai_gi_hypo,39,354,11.02,1.39,0.48,4.08,0.8043
+Subgroup: oral_ap_vs_lai_gi_hypo (hcp_only),oral_ap_vs_lai_gi_hypo,31,294,10.54,1.45,0.42,4.99,0.781
+Subgroup: lai_vs_oral_ap_gerd (overall),lai_vs_oral_ap_gerd,0,49,0.0,0.0,0.0,0.0,0.2368
+Subgroup: lai_vs_oral_ap_gerd (hcp_only),lai_vs_oral_ap_gerd,0,40,0.0,0.0,0.0,0.0,0.3733
+Subgroup: lai_vs_oral_ap_hosp (overall),lai_vs_oral_ap_hosp,10,49,20.41,1.56,0.73,3.32,0.2825
+Subgroup: lai_vs_oral_ap_hosp (hcp_only),lai_vs_oral_ap_hosp,6,40,15.0,1.12,0.44,2.84,0.8074
+Subgroup: lai_vs_oral_ap_gi_hypo_s2 (overall),lai_vs_oral_ap_gi_hypo_s2,3,31,9.68,1.48,0.38,5.81,0.7002
+Subgroup: lai_vs_oral_ap_gerd_s2 (overall),lai_vs_oral_ap_gerd_s2,0,31,0.0,0.0,0.0,0.0,1.0
+Subgroup: female_vs_male_nausea (overall),female_vs_male_nausea,173,678,25.52,1.62,1.27,2.06,0.0001
+Subgroup: female_vs_male_nausea (hcp_only),female_vs_male_nausea,72,330,21.82,1.44,1.01,2.05,0.0449
+Subgroup: female_vs_male_vomiting (overall),female_vs_male_vomiting,141,678,20.8,1.48,1.14,1.91,0.003
+Subgroup: female_vs_male_vomiting (hcp_only),female_vs_male_vomiting,50,330,15.15,1.38,0.92,2.07,0.1397
+Subgroup: age_60_vs_18_59_uret (overall),age_60_vs_18_59_uret,17,143,11.89,2.0,1.13,3.54,0.0218
+Subgroup: age_60_vs_18_59_uret (hcp_only),age_60_vs_18_59_uret,10,34,29.41,3.81,1.66,8.71,0.0028
+Subgroup: older_men_60_vs_others_uret (overall),older_men_60_vs_others_uret,10,57,17.54,2.97,1.43,6.13,0.006
+Subgroup: older_men_60_vs_others_uret (hcp_only),older_men_60_vs_others_uret,7,12,58.33,11.79,3.54,39.28,0.0001

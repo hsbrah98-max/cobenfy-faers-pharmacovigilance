@@ -3,78 +3,89 @@
 > **Submission Track:** APA 2027 Annual Meeting (May 1–5, 2027, New York City, Javits Center) — *New Research Poster Session*
 > **Submission Window:** Opens November 12, 2026 | **Closes Friday, January 8, 2027 (5:00 p.m. ET)**
 > **Author:** Harman Brah, MD
-> **Reporting Standard:** Compliant with the 2024 **READUS-PV** Guideline (*REporting of A Disproportionality analysis for drUg Safety signal detection using individual case safety reports in PharmacoVigilance*, Fusaroli et al., *Drug Safety* 2024)
+> **Reporting Standard:** Compliant with the 2024 **READUS-PV** Guideline (*Drug Safety* 2024, PMID: 38713346)
+> **Back-Pocket Supplement:** Extended 15-endpoint sensitivity matrix, negative control outcomes, and sex/age demographic tables are archived in [SUPPLEMENT_AND_DEMOGRAPHICS.md](SUPPLEMENT_AND_DEMOGRAPHICS.md).
 
 ---
 
-## 1. APA 2027 Abstract (Strictly < 3,000 Characters with Spaces)
+## 1. APA 2027 Abstract (Under 3,000 Characters with Spaces)
 
 ### Poster Title
-**Disproportionality Analysis of Xanomeline-Trospium Concomitant Antimuscarinic Burden in the FDA Adverse Event Reporting System**
-*(Character count: 127 / 150 limit)*
+**Concomitant Antimuscarinic Burden and Gastrointestinal Hypomotility Reporting with Xanomeline-Trospium in the FDA Adverse Event Reporting System**
+*(Character count: 144 / 150 limit)*
 
 ### Structured Abstract
-*(Character count: 2,926 with section labels / 2,884 without labels — strictly under 3,000-character APA limit)*
+*(Character count: 2,837 with section labels / 2,795 without labels — under the 3,000-character APA limit)*
 
-**Background:** Xanomeline-trospium (Cobenfy) pairs a central M1/M4 agonist with a peripheral antimuscarinic (trospium) to limit cholinergic adverse events. Although approved as monotherapy, patients are often co-prescribed antipsychotics (APs) or anticholinergics during cross-titration or augmentation. Whether concomitant strong antimuscarinics disproportionately increase gastrointestinal (GI) hypomotility or hospitalization in FAERS is unknown.
+**Background:** Xanomeline-trospium (Cobenfy) pairs a central M1/M4 muscarinic agonist with a peripheral antimuscarinic (trospium) to limit cholinergic adverse events. Although approved as monotherapy, patients often receive concomitant antipsychotics (APs) or anticholinergics during cross-titration or augmentation. Whether concomitant strong antimuscarinics are associated with disproportionate reporting of gastrointestinal (GI) hypomotility and hospitalization in FAERS is unknown.
 
-**Methods:** Following 2024 READUS-PV guidelines, we queried U.S. FAERS via OpenFDA through Q2 2026 (July 30, 2026) for unique xanomeline-trospium reports and stratified cases via the Anticholinergic Cognitive Burden (ACB) scale: Stratum 1, Strong Antimuscarinics (ACB=3: clozapine, olanzapine, quetiapine, chlorpromazine, loxapine, 1st-gen H1 antihistamines, benztropine, glycopyrrolate, oxybutynin, ACB-3 antidepressants); Stratum 2, Non-Antimuscarinic D2/5-HT2A APs Only (risperidone, paliperidone, aripiprazole, haloperidol, lumateperone, cariprazine, lurasidone, pimavanserin, fluphenazine, etc.); and Unexposed Reference (2nd-gen antihistamines and inhalers excluded). We estimated crude Reporting Odds Ratios (ROR), multivariable logistic regression adjusted RORs (aROR) controlling for healthcare-professional (HCP) vs. consumer reporter status, HCP-only, non-clozapine, and Stratum 1 vs. 2 models.
+**Methods:** Following 2024 READUS-PV guidelines, we queried U.S. FAERS via OpenFDA through Q2 2026 for unique xanomeline-trospium reports and stratified them by Anticholinergic Cognitive Burden (ACB): Stratum 1, strong antimuscarinics (ACB=3: clozapine, olanzapine, quetiapine, chlorpromazine, loxapine, 1st-gen H1 blockers, benztropine, glycopyrrolate, oxybutynin, ACB-3 antidepressants); Stratum 2, non-antimuscarinic D2/5-HT2A APs only (risperidone, paliperidone, aripiprazole, haloperidol, lumateperone, cariprazine, lurasidone, fluphenazine); and an unexposed Reference. We estimated crude reporting odds ratios (ROR), logistic regression aRORs adjusted for healthcare-professional (HCP) vs. consumer reporter, and HCP-only and non-clozapine sensitivity models. Prespecified negative control outcomes (rash, upper respiratory infection, arthralgia, back pain, pruritus) tested for nonspecific reporting.
 
-**Results:** Among 2,148 reports, 424 (19.7%) listed concomitant APs or ACB-3 drugs: Stratum 1 (n=260, 12.1%; 85.4% HCP), Stratum 2 (n=164, 7.6%; 79.3% HCP), and Reference (n=1,724, 80.3%; 51.3% HCP). Versus Reference, Stratum 1 showed consistent signals across all four models (crude, reporter-adjusted aROR, HCP-only, and non-clozapine) for all-cause hospitalization (18.1% vs. 8.0%; ROR 2.54; aROR 2.54, 95% CI 1.74-3.69, p<0.0001; HCP ROR 2.23; non-clozapine ROR 2.30), medical hospitalization (11.2% vs. 6.3%; ROR 1.88; aROR 1.77, 1.13-2.76, p=0.0126), composite GI hypomotility including constipation, ileus, or obstruction (12.7% vs. 7.5%; ROR 1.80; aROR 2.49, 1.62-3.85, p<0.0001; HCP ROR 3.17), constipation (11.2% vs. 7.3%; aROR 2.26, p=0.0004; HCP ROR 3.03, p=0.0001), and GERD (5.8% vs. 2.1%; ROR 2.79; aROR 3.56, 1.84-6.89, p=0.0002; non-clozapine ROR 3.98). Nominal signals for urinary retention (ROR 1.67; aROR 1.37, p=0.1864) and lower vomiting (ROR 0.60; aROR 0.71, p=0.1050) attenuated after reporter adjustment, though urinary retention persisted in non-clozapine ACB-3 reports (ROR 2.34, p=0.0023). Versus Stratum 2, Stratum 1 had higher hospitalization (ROR 1.91, p=0.0363) and GERD (ROR 4.96, p=0.0213).
+**Results:** Among 2,148 unique reports, 424 (19.7%) listed concomitant APs or ACB-3 drugs: Stratum 1 (n=260; 85.4% HCP), Stratum 2 (n=164; 79.3% HCP), and Reference (n=1,724; 51.3% HCP). Versus Reference, Stratum 1 had consistently higher reporting odds across crude, adjusted, HCP-only, and non-clozapine models for all-cause hospitalization (18.1% vs. 8.0%; aROR 2.54, 95% CI 1.74-3.69, p<0.0001; HCP ROR 2.23; non-clozapine ROR 2.30), composite GI hypomotility (12.7% vs. 7.5%; aROR 2.51, 1.63-3.88, p<0.0001; HCP ROR 3.17), constipation (11.2% vs. 7.3%; aROR 2.26, p=0.0004), and GERD (5.8% vs. 2.1%; aROR 3.56, p=0.0002; non-clozapine ROR 3.98). Medical (non-psychiatric) hospitalization was elevated after adjustment (aROR 1.77, p=0.013) but not in the non-clozapine model. Urinary retention attenuated after adjustment (aROR 1.37, p=0.19). Stratum 2 showed no disproportionality for hospitalization (aROR 1.33, p=0.30), GI hypomotility (aROR 1.24, p=0.51), or GERD (aROR 0.67, p=0.59). Negative controls showed no Stratum 1 signal (1.9% vs. 1.5%; aROR 1.49, 0.55-4.05).
 
-**Conclusion:** Nearly 1 in 5 real-world xanomeline-trospium FAERS reports involves concomitant APs or strong antimuscarinics. Co-prescribing ACB-3 antimuscarinics is associated with disproportionate GI hypomotility, GERD, and hospitalization across reporter-adjusted and non-clozapine models, supporting anticholinergic de-escalation during cross-titration.
+**Conclusion:** Nearly 1 in 5 xanomeline-trospium FAERS reports lists concomitant APs or strong antimuscarinics. Concomitant ACB-3 agents, but not non-antimuscarinic APs, were associated with disproportionate reporting of GI hypomotility, GERD, and hospitalization. These signals support caution with anticholinergic co-prescribing and warrant confirmation in longitudinal data.
 
 ---
 
 ## 2. Figures
 
-![Figure 1: READUS-PV Forest Plot of Crude ROR, Multivariable Reporter-Adjusted aROR, and HCP-Only Sensitivity](figures/fig1_cobenfy_polypharmacy_forest_plot.png)
+![Figure 1: Reporter-adjusted forest plot with negative control row](figures/fig1_cobenfy_polypharmacy_forest_plot.png)
 
-![Figure 2: Concomitant Agents, 3-Stratum Event Rates, and 4-Model Sensitivity Robustness Check](figures/fig2_cobenfy_concomitant_breakdown.png)
-
----
-
-## 3. Complete Summary Table Across All 4 Sensitivity Models ($N = 2,148$)
-
-| Adverse Event / Outcome Domain | Stratum 1: Strong ACB-3 ($n = 260$) | Stratum 2: Non-Anti-M AP ($n = 164$) | Unexposed Reference ($n = 1,724$) | Model 1: Crude ROR (95% CI), $p$ | Model 2: Reporter-Adjusted Multivariable aROR (95% CI), $p$, BH $q$ | Model 3: HCP-Only ROR ($n=222$ vs. $885$), $p$ | Model 4: Non-Clozapine S1 ROR ($n=162$ vs. $1,724$), $p$ |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Serious Clinical Outcomes** | | | | | | | |
-| Hospitalization (All-Cause) | 47 (18.08%) | 17 (10.37%) | 138 (8.00%) | **2.54 (1.77–3.64)**, $p < 0.0001$ | **2.54 (1.74–3.69)**, $p < 0.0001$, $q < 0.0001$ | **2.23 (1.46–3.40)**, $p = 0.0003$ | **2.30 (1.45–3.64)**, $p = 0.0007$ |
-| Non-Psychiatric Medical Hospitalization | 29 (11.15%) | 12 (7.32%) | 108 (6.26%) | **1.88 (1.22–2.89)**, $p = 0.0057$ | **1.77 (1.13–2.76)**, $p = 0.0126$, $q = 0.0236$ | **1.79 (1.10–2.91)**, $p = 0.0247$ | 1.53 (0.87–2.68), $p = 0.1360$ |
-| **Peripheral Antimuscarinic GI / GU Signals** | | | | | | | |
-| GI Hypomotility *(Constipation / Ileus / Obstruction)* | 33 (12.69%) | 11 (6.71%) | 129 (7.48%) | **1.80 (1.20–2.70)**, $p = 0.0071$ | **2.49 (1.62–3.85)**, $p < 0.0001$, $q = 0.0002$ | **3.17 (1.89–5.34)**, $p < 0.0001$ | **1.84 (1.12–3.03)**, $p = 0.0214$ |
-| Constipation *(Single MedDRA PT)* | 29 (11.15%) | 11 (6.71%) | 126 (7.31%) | **1.59 (1.04–2.44)**, $p = 0.0353$ | **2.26 (1.44–3.56)**, $p = 0.0004$, $q = 0.0010$ | **3.03 (1.76–5.23)**, $p = 0.0001$ | **1.89 (1.15–3.11)**, $p = 0.0141$ |
-| Gastroesophageal Reflux Disease (GERD) | 15 (5.77%) | 2 (1.22%) | 37 (2.15%) | **2.79 (1.51–5.16)**, $p = 0.0025$ | **3.56 (1.84–6.89)**, $p = 0.0002$, $q = 0.0006$ | **3.24 (1.45–7.25)**, $p = 0.0086$ | **3.98 (2.06–7.67)**, $p = 0.0002$ |
-| Urinary Retention *(Nominal; Attenuates in HCP)* | 25 (9.62%) | 9 (5.49%) | 103 (5.97%) | **1.67 (1.06–2.65)**, $p = 0.0303$ | 1.37 (0.86–2.20), $p = 0.1864$, $q = 0.2330$ | 1.41 (0.86–2.32), $p = 0.1717$ | **2.34 (1.42–3.85)**, $p = 0.0023$ |
-| Blurred Vision | 13 (5.00%) | 3 (1.83%) | 58 (3.36%) | 1.51 (0.82–2.80), $p = 0.2073$ | 1.58 (0.83–2.99), $p = 0.1634$, $q = 0.2228$ | 1.44 (0.69–3.02), $p = 0.3079$ | **2.30 (1.19–4.45)**, $p = 0.0155$ |
-| Tachycardia / Heart Rate Increased *(Combined)* | 13 (5.00%) | 5 (3.05%) | 57 (3.31%) | 1.54 (0.83–2.85), $p = 0.2035$ | 1.36 (0.72–2.57), $p = 0.3367$, $q = 0.3885$ | 1.43 (0.73–2.81), $p = 0.3452$ | 1.52 (0.71–3.24), $p = 0.2601$ |
-| **Concomitant Psychotropic Burden & Coding Splits** | | | | | | | |
-| Akathisia *(Concomitant D2 Burden)* | 8 (3.08%) | 6 (3.66%) | 2 (0.12%) | **27.33 (5.77–129.44)**, $p < 0.0001$ | **22.07 (4.47–108.86)**, $p = 0.0001$, $q = 0.0005$ | **33.05 (4.11–265.65)**, $p < 0.0001$ | **33.12 (6.63–165.4)**, $p < 0.0001$ |
-| Sialorrhea + Drooling *(Combined MedDRA PTs)* | 14 (5.38%) | 8 (4.88%) | 52 (3.02%) | 1.83 (1.00–3.35), $p = 0.0611$ | 1.77 (0.94–3.31), $p = 0.0751$, $q = 0.1252$ | 1.60 (0.78–3.26), $p = 0.2201$ | 1.89 (0.90–3.95), $p = 0.0987$ |
-| Salivary Hypersecretion *(Clinician PT Only)* | 10 (3.85%) | 5 (3.05%) | 14 (0.81%) | **4.89 (2.15–11.12)**, $p = 0.0005$ | **3.99 (1.70–9.38)**, $p = 0.0015$, $q = 0.0032$ | **4.11 (1.61–10.49)**, $p = 0.0040$ | **3.89 (1.42–10.67)**, $p = 0.0190$ |
-| Weight Increased | 8 (3.08%) | 4 (2.44%) | 12 (0.70%) | **4.53 (1.83–11.19)**, $p = 0.0024$ | **6.69 (2.50–17.92)**, $p = 0.0002$, $q = 0.0006$ | **14.37 (2.97–69.69)**, $p = 0.0003$ | **6.44 (2.44–16.97)**, $p = 0.0006$ |
-| **Upper GI / Emetic Reporting** | | | | | | | |
-| Nausea | 56 (21.54%) | 22 (13.41%) | 382 (22.16%) | 0.96 (0.70–1.32), $p = 0.8727$ | 0.99 (0.72–1.38), $p = 0.9703$, $q = 0.9703$ | 0.99 (0.69–1.42), $p = 1.0000$ | 1.00 (0.68–1.47), $p = 1.0000$ |
-| Vomiting *(Nominal; Attenuates in HCP)* | 30 (11.54%) | 15 (9.15%) | 307 (17.81%) | **0.60 (0.40–0.90)**, $p = 0.0128$ | 0.71 (0.47–1.07), $p = 0.1050$, $q = 0.1575$ | 0.63 (0.39–1.01), $p = 0.0646$ | 0.76 (0.48–1.20), $p = 0.2800$ |
-| Dyspepsia | 5 (1.92%) | 3 (1.83%) | 77 (4.47%) | 0.42 (0.17–1.05), $p = 0.0641$ | 0.72 (0.28–1.84), $p = 0.4891$, $q = 0.5240$ | 0.44 (0.10–1.90), $p = 0.3977$ | 0.40 (0.13–1.29), $p = 0.1507$ |
+![Figure 2: Concomitant agents and event rates across the three strata](figures/fig2_cobenfy_concomitant_breakdown.png)
 
 ---
 
-## 4. What We Can (and Cannot) Conclude Under Peer-Reviewed Standards (READUS-PV 2024)
+## 3. Core Summary Table: Concomitant Antimuscarinic Burden ($N = 2,148$)
 
-### 1. What Is Bulletproof Across All Four Statistical Models
-- **GI Hypomotility (`aROR 2.49, p < 0.0001`), Single-Term Constipation (`aROR 2.26, p = 0.0004`), GERD (`aROR 3.56, p = 0.0002`), and All-Cause Hospitalization (`aROR 2.54, p < 0.0001`)** survive:
-  1. Crude disproportionality testing (`ROR`)
-  2. Multivariable logistic regression adjusting for Healthcare Professional (HCP) vs. Consumer reporter status (`aROR`) and Benjamini-Hochberg false discovery rate (`q <= 0.001`)
-  3. Restriction to HCP-submitted reports (`n = 222` vs. `n = 885`, where GI hypomotility rises to `ROR 3.17` and constipation to `ROR 3.03`)
-  4. Exclusion of all clozapine reports (`n = 162` non-clozapine ACB-3 cases vs. `n = 1,724` reference, where GERD rises to `ROR 3.98` and urinary retention is `ROR 2.34, p = 0.0023`)
-  5. Active-comparator comparison against Non-Antimuscarinic D2/5-HT2A Antipsychotics (`Stratum 2, n = 164`), which show **no increase** in GI hypomotility (`aROR 1.14, p = 0.70`), constipation (`aROR 1.17, p = 0.64`), or GERD (`aROR 0.67, p = 0.59`).
+| Clinical Outcome | Strong ACB-3 ($n = 260$) | Non-Anti-M AP ($n = 164$) | Reference ($n = 1,724$) | Stratum 1 Crude ROR (95% CI), $p$ | Stratum 1 Reporter-Adjusted aROR (95% CI), $p$ | Stratum 1 HCP-Only ROR ($n=222$ vs. $885$), $p$ | Stratum 1 Non-Clozapine ROR ($n=162$ vs. $1,724$), $p$ | Stratum 2 Reporter-Adjusted aROR (95% CI), $p$ |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| All-Cause Hospitalization | 47 (18.1%) | 17 (10.4%) | 138 (8.0%) | **2.54 (1.77–3.64)**, $p < 0.0001$ | **2.54 (1.74–3.69)**, $p < 0.0001$ | **2.23 (1.46–3.40)**, $p = 0.0003$ | **2.30 (1.47–3.60)**, $p = 0.0007$ | 1.33 (0.78–2.28), $p = 0.30$ |
+| Medical Hospitalization *(Non-Psych)* | 29 (11.2%) | 12 (7.3%) | 108 (6.3%) | **1.88 (1.22–2.89)**, $p = 0.0057$ | **1.77 (1.13–2.76)**, $p = 0.0126$ | **1.79 (1.10–2.91)**, $p = 0.0247$ | 1.53 (0.87–2.69), $p = 0.14$ | 1.13 (0.60–2.11), $p = 0.71$ |
+| GI Hypomotility *(Constip./Ileus/Obst.)* | 33 (12.7%) | 12 (7.3%) | 129 (7.5%) | **1.80 (1.20–2.70)**, $p = 0.0071$ | **2.51 (1.63–3.88)**, $p < 0.0001$ | **3.17 (1.89–5.34)**, $p < 0.0001$ | **1.84 (1.13–3.01)**, $p = 0.0214$ | 1.24 (0.66–2.31), $p = 0.51$ |
+| Constipation *(Single MedDRA PT)* | 29 (11.2%) | 11 (6.7%) | 126 (7.3%) | **1.59 (1.04–2.44)**, $p = 0.0353$ | **2.26 (1.44–3.56)**, $p = 0.0004$ | **3.03 (1.76–5.23)**, $p = 0.0001$ | **1.89 (1.15–3.09)**, $p = 0.0141$ | 1.17 (0.61–2.24), $p = 0.64$ |
+| Gastroesophageal Reflux (GERD) | 15 (5.8%) | 2 (1.2%) | 37 (2.1%) | **2.79 (1.51–5.16)**, $p = 0.0025$ | **3.56 (1.84–6.89)**, $p = 0.0002$ | **3.24 (1.45–7.25)**, $p = 0.0086$ | **3.98 (2.07–7.65)**, $p = 0.0002$ | 0.67 (0.16–2.83), $p = 0.59$ |
+| Urinary Retention | 25 (9.6%) | 9 (5.5%) | 103 (6.0%) | **1.67 (1.06–2.65)**, $p = 0.0303$ | 1.37 (0.86–2.20), $p = 0.19$ | 1.41 (0.86–2.32), $p = 0.17$ | **2.34 (1.42–3.86)**, $p = 0.0023$ | 0.78 (0.39–1.59), $p = 0.50$ |
+| Negative Control Composite *(Rash/URI/Arthralgia/Back Pain/Pruritus)* | 5 (1.9%) | 7 (4.3%) | 25 (1.5%) | 1.33 (0.51–3.51), $p = 0.58$ | 1.49 (0.55–4.05), $p = 0.44$ | 0.92 (0.26–3.25), $p = 1.00$ | — | **3.29 (1.37–7.89)**, $p = 0.0077$ |
 
-### 2. Assumptions We Tested and Corrected Before Finalizing
-- **Why Capsule Dose-Stage Comparisons Were Cut:** Out of 1,266 reports listing a Cobenfy capsule strength, **648 reports (51%) list two or three capsule strengths on the same report** (from the starter titration pack) without linking which dose was active when the adverse event occurred. Assigning multi-dose reports to their highest dose creates a spurious spike in vomiting at 100/20 mg and constipation at 125/30 mg; in single-dose reports, vomiting is identical between 50/20 mg (16.5%) and 100/20 mg (16.0%). We therefore dropped the capsule stoichiometry claim completely.
-- **Why "Salivary Hypersecretion" Was Checked Against "Drooling":** Clinicians code excess saliva as `"SALIVARY HYPERSECRETION"` (`aROR 3.99, p = 0.0015`), whereas consumers code it as `"DROOLING"`. Combining both MedDRA terms (`Sialorrhea + Drooling`) attenuates the signal to `aROR 1.77 (p = 0.0751)`, demonstrating how reporter terminology splits can inflate single-term RORs.
-- **Why Psychiatric Relapse Cannot Prove Central M1/M4 Receptor Blockade:** Although psychiatric relapse/aggravation is reported more often in Stratum 1 than Stratum 2 (21.9% vs. 12.8%, $p = 0.0204$), FAERS is subject to **confounding by indication and channelling bias** (patients co-prescribed clozapine, olanzapine, or quetiapine often have more refractory psychosis). Under READUS-PV guidelines, spontaneous reports cannot distinguish channelling bias from central M1/M4 receptor competition.
-- **Additive Burden vs. Drug-Drug Synergy:** FAERS lacks a population denominator and cannot separate additive side effects of co-prescribed drugs (e.g., olanzapine/clozapine constipation, D2-blocker akathisia) from supra-additive synergy. Conclusions are framed strictly as **real-world cumulative antimuscarinic morbidity signals**.
+*Stratum 2 (non-antimuscarinic APs) shows no disproportionality on any GI or hospitalization outcome, so the GI signal tracks antimuscarinic burden rather than antipsychotic co-prescribing in general. The negative control composite is null for Stratum 1 but elevated for Stratum 2 (driven by 4 rash and 1 each of arthralgia, back pain and pruritus reports out of 164). Negative control events are sparse (37 across all strata), so these checks have limited power.*
+
+---
+
+## 4. Exploratory: Long-Acting Injectable (LAI) vs. Oral Antipsychotics (Not in Abstract)
+
+LAI status is taken from the product name the reporter entered (e.g., INVEGA SUSTENNA, ABILIFY MAINTENA, RISPERDAL CONSTA). The earlier version also used OpenFDA brand lists, which attach every LAI brand to the molecule, so 70 reports of plain oral risperidone, olanzapine or aripiprazole were counted as LAI. With the corrected definition, $n = 49$ LAI vs. $n = 354$ non-LAI among 403 AP-cotreated reports.
+
+| Comparison | LAI AP | No LAI (oral) AP | ROR (95% CI), $p$ | HCP-Only |
+| :--- | :---: | :---: | :---: | :---: |
+| GI Hypomotility, all AP-cotreated reports | 4/49 (8.2%) | 39/354 (11.0%) | 0.72 (0.24–2.10), $p = 0.80$ | 0.69 (0.20–2.36), $p = 0.78$ |
+| GI Hypomotility, Stratum 2 only (same antimuscarinic burden) | 3/31 (9.7%) | 9/133 (6.8%) | 1.48 (0.38–5.81), $p = 0.70$ | — |
+| GERD, all AP-cotreated reports | 0/49 (0.0%) | 16/354 (4.5%) | 0 events, $p = 0.24$ | 0 events, $p = 0.37$ |
+| GERD, Stratum 2 only | 0/31 (0.0%) | 2/133 (1.5%) | 0 events, $p = 1.00$ | — |
+| All-Cause Hospitalization, all AP-cotreated reports | 10/49 (20.4%) | 50/354 (14.1%) | 1.56 (0.73–3.32), $p = 0.28$ | 1.12 (0.44–2.84), $p = 0.81$ |
+
+The earlier "3.4-fold lower GI hypomotility with LAI" result does not hold. LAI and oral reports also differ in antimuscarinic burden (18/49 LAI vs. 221/354 oral reports are in Stratum 1), and within Stratum 2 there is no difference. Within-molecule comparisons (e.g., LAI vs. oral aripiprazole, $n = 12$ LAI) are too small to interpret. Route is reported as a limitation, not a finding.
+
+---
+
+## 5. Negative Control Outcomes (Prespecified)
+
+| Negative Control Outcome | Stratum 1 | Stratum 2 | Reference | Stratum 1 aROR (95% CI), $p$ | Stratum 2 aROR (95% CI), $p$ |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Negative Control Composite (Any of 5) | 5/260 | 7/164 | 25/1724 | 1.49 (0.55–4.05), $p = 0.44$ | **3.29 (1.37–7.89)**, $p = 0.0077$ |
+| Rash | 3/260 | 4/164 | 16/1724 | 1.02 (0.29–3.61), $p = 0.97$ | 2.29 (0.75–7.05), $p = 0.15$ |
+| Upper Respiratory Infection | 0/260 | 0/164 | 2/1724 | too few events to model | too few events to model |
+| Arthralgia | 0/260 | 1/164 | 1/1724 | too few events to model | too few events to model |
+| Back Pain | 1/260 | 1/164 | 0/1724 | too few events to model | too few events to model |
+| Pruritus | 1/260 | 1/164 | 6/1724 | 1.59 (0.17–14.47), $p = 0.68$ | 2.28 (0.26–19.84), $p = 0.46$ |
+
+---
+
+## 6. Key Takeaways & Methodological Scope (READUS-PV 2024)
+
+1. **Strong ACB-3 co-prescribing:** Reports listing a strong antimuscarinic (`ACB = 3`, $n = 260$) alongside Cobenfy's peripheral trospium component had higher reporting odds of GI hypomotility (`aROR 2.51, p < 0.0001`), GERD (`aROR 3.56, p = 0.0002`), and hospitalization (`aROR 2.54, p < 0.0001`) than reports without concomitant APs or ACB-3 drugs.
+2. **Non-antimuscarinic antipsychotics:** Reports listing only non-antimuscarinic D2/5-HT2A APs (`Stratum 2, n = 164`) showed no disproportionate reporting of GI hypomotility (`7.3% vs. 7.5%`, `aROR 1.24, p = 0.51`), GERD (`1.2% vs. 2.1%`), or hospitalization (`aROR 1.33, p = 0.30`). This contrast is consistent with, but does not prove, an antimuscarinic mechanism.
+3. **Route of administration:** After correcting LAI classification, LAI vs. oral AP route showed no difference in GI hypomotility or GERD reporting (Section 4).
+4. **READUS-PV Guardrails:** FAERS is a spontaneous reporting system without a population denominator. These results describe disproportionate reporting, not incidence or causation. They cannot separate additive from supra-additive (synergistic) drug effects, and confounding by indication (e.g., treatment-resistant illness in clozapine users) and channelling bias remain possible.
 
 ---
 

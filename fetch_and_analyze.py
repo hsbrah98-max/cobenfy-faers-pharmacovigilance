@@ -13,10 +13,18 @@ Evaluates three clinician-relevant questions with full sensitivity checks:
                   controlling for Healthcare Professional (HCP) vs. Consumer status
        - Model 3: HCP-Only Restricted Cohort (n = 222 vs. n = 885)
        - Model 4: Non-Clozapine ACB-3 Cohort (n = 162 vs. n = 1,724)
-  2. Antipsychotic Administration Route: Long-Acting Injectable (LAI) Antipsychotics
-     (n = 119) vs. Oral Antipsychotics Only (n = 284) co-prescribed with Cobenfy
-     (overall and HCP-only sensitivity, n = 101 vs. n = 233).
+  2. Antipsychotic Administration Route (exploratory): Long-Acting Injectable (LAI)
+     Antipsychotics (n = 49) vs. no LAI (n = 354) among antipsychotic-cotreated reports.
+     LAI status comes from the reporter-entered product name only. OpenFDA brand lists
+     attach every LAI brand to the molecule (e.g., RISPERDAL CONSTA to any risperidone
+     entry), which misclassified 70 oral reports as LAI in the earlier run. The route
+     comparison is repeated within Stratum 2 so both arms carry the same (low)
+     antimuscarinic burden.
   3. Demographic Risk Stratification:
+  4. Negative control outcomes (rash, upper respiratory infection, arthralgia, back pain,
+     pruritus; chosen before results were seen) to check that Stratum 1 signals are not a
+     general reporting artifact.
+  5. Demographic Risk Stratification:
      - Sex Differences (n = 1,646: 678 Female vs. 968 Male; HCP-only n = 330 vs. 505)
      - Age & Older Male Vulnerability (n = 1,076 adults: 143 aged >=60 vs. 933 aged 18-59;
        57 Older Men aged >=60 vs. 986 Other Adults; plus HCP-only sensitivity).
@@ -214,8 +222,17 @@ def main():
         "PSYCHOTIC DISORDER", "SCHIZOPHRENIA", "CONDITION AGGRAVATED", "PSYCHOTIC SYMPTOM",
         "HALLUCINATION", "HALLUCINATION, AUDITORY", "DELUSION", "PARANOIA", "AGITATION",
     }
+    # Negative control outcomes: no plausible antimuscarinic mechanism. Fixed before results were seen.
+    negative_control_pts = {
+        "Rash": {"RASH", "RASH PRURITIC", "RASH ERYTHEMATOUS", "RASH MACULO-PAPULAR"},
+        "Upper Respiratory Infection": {"UPPER RESPIRATORY TRACT INFECTION", "NASOPHARYNGITIS"},
+        "Arthralgia": {"ARTHRALGIA"},
+        "Back Pain": {"BACK PAIN"},
+        "Pruritus": {"PRURITUS"},
+    }
     gi_hypomotility_pts = {
-        "CONSTIPATION", "INTESTINAL OBSTRUCTION", "ILEUS", "ILEUS PARALYTIC",
+        "CONSTIPATION", "INTESTINAL OBSTRUCTION", "SMALL INTESTINAL OBSTRUCTION",
+        "LARGE INTESTINAL OBSTRUCTION", "ILEUS", "ILEUS PARALYTIC", "PARALYTIC ILEUS",
         "GASTROINTESTINAL HYPOMOTILITY", "FAECALOMA",
     }
 
@@ -267,10 +284,12 @@ def main():
     for sid, rec in unique_map.items():
         p = rec.get("patient", {})
         dnames = set()
+        reported_names = set()
         for d in p.get("drug", []):
             mp = (d.get("medicinalproduct") or "").upper()
             if mp:
                 dnames.add(mp)
+                reported_names.add(mp)
             for g in d.get("openfda", {}).get("generic_name", []):
                 dnames.add(g.upper())
             for b in d.get("openfda", {}).get("brand_name", []):
@@ -280,7 +299,8 @@ def main():
         has_o_ap = any(any(k in dn for k in non_antimuscarinic_aps) for dn in dnames)
         has_ah = any(any(k in dn for k in first_gen_antihistamines) for dn in dnames)
         has_ach = any(any(k in dn for k in systemic_anticholinergics) for dn in dnames)
-        has_lai = any(any(k in dn for k in lai_keywords) for dn in dnames)
+        # Reporter-entered names only: OpenFDA brand_name lists every brand of the molecule.
+        has_lai = any(any(k in dn for k in lai_keywords) for dn in reported_names)
         has_any_ap = any(any(k in dn for k in all_ap_keywords) for dn in dnames)
 
         if has_m_ap:
@@ -321,6 +341,7 @@ def main():
             "psych_relapse": bool(pts & psych_relapse_pts),
             "nonpsych_hosp": hosp and not bool(pts & psych_relapse_pts),
             "gi_hypo": bool(pts & gi_hypomotility_pts),
+            "neg_control": bool(pts & set().union(*negative_control_pts.values())),
         }
         all_items.append(item)
 
@@ -350,11 +371,31 @@ def main():
         ("Vomiting (Nominal; Attenuates in HCP)", lambda x: "VOMITING" in x["pts"]),
         ("Dyspepsia", lambda x: "DYSPEPSIA" in x["pts"]),
     ]
+    negative_controls = [("Negative Control Composite (Any of 5)", lambda x: x["neg_control"])] + [
+        (f"Negative Control: {lab}", (lambda s: lambda x: bool(x["pts"] & s))(pt_set))
+        for lab, pt_set in negative_control_pts.items()
+    ]
 
     hcp_s1 = [x for x in g_ach_strong if x["hcp"]]
     hcp_s2 = [x for x in g_d2_only if x["hcp"]]
     hcp_mono = [x for x in g_pure_mono if x["hcp"]]
     nocloz_s1 = [x for x in g_ach_strong if not x["clozapine"]]
+
+    def safe_logit(fn):
+        try:
+            return fit_logistic_aror(all_items, fn)
+        except (OverflowError, np.linalg.LinAlgError):
+            return None  # too few events to fit
+
+    neg_control_results = []
+    for label, fn in negative_controls:
+        neg_control_results.append({
+            "label": label,
+            "ach_vs_mono": compute_2x2(g_ach_strong, g_pure_mono, fn),
+            "d2_vs_mono": compute_2x2(g_d2_only, g_pure_mono, fn),
+            "hcp_ach_vs_mono": compute_2x2(hcp_s1, hcp_mono, fn),
+            "multivariable_logit": safe_logit(fn),
+        })
 
     results = []
     for label, fn in endpoints:
@@ -385,6 +426,8 @@ def main():
     # Clinical Subgroup Analyses (LAI vs Oral AP, Female vs Male, Age >=60 & Older Men >=60)
     lai_all = [x for x in all_items if x["lai"]]
     oral_ap_all = [x for x in all_items if x["oral_ap_only"]]
+    lai_s2 = [x for x in lai_all if x["stratum"] == "S2"]
+    oral_ap_s2 = [x for x in oral_ap_all if x["stratum"] == "S2"]
     lai_hcp = [x for x in lai_all if x["hcp"]]
     oral_ap_hcp = [x for x in oral_ap_all if x["hcp"]]
 
@@ -420,6 +463,13 @@ def main():
             "overall": compute_2x2(lai_all, oral_ap_all, lambda x: x["hosp"]),
             "hcp_only": compute_2x2(lai_hcp, oral_ap_hcp, lambda x: x["hosp"]),
         },
+        # Same-burden check: both arms restricted to Stratum 2 (no ACB-3 drug on the report)
+        "lai_vs_oral_ap_gi_hypo_s2": {
+            "overall": compute_2x2(lai_s2, oral_ap_s2, lambda x: x["gi_hypo"]),
+        },
+        "lai_vs_oral_ap_gerd_s2": {
+            "overall": compute_2x2(lai_s2, oral_ap_s2, lambda x: "GASTROOESOPHAGEAL REFLUX DISEASE" in x["pts"]),
+        },
         "female_vs_male_nausea": {
             "overall": compute_2x2(fem_all, mal_all, lambda x: "NAUSEA" in x["pts"]),
             "hcp_only": compute_2x2(fem_hcp, mal_hcp, lambda x: "NAUSEA" in x["pts"]),
@@ -451,6 +501,10 @@ def main():
         "n_nocloz_s1": len(nocloz_s1),
         "n_lai": len(lai_all),
         "n_oral_ap": len(oral_ap_all),
+        "n_lai_s1": sum(1 for x in lai_all if x["stratum"] == "S1"),
+        "n_oral_ap_s1": sum(1 for x in oral_ap_all if x["stratum"] == "S1"),
+        "n_lai_s2": len(lai_s2),
+        "n_oral_ap_s2": len(oral_ap_s2),
         "n_female": len(fem_all),
         "n_male": len(mal_all),
         "n_age_60": len(old_all),
@@ -460,11 +514,61 @@ def main():
         "class_counts": dict(class_counts),
         "specific_counts": dict(specific_counts.most_common(30)),
         "results": results,
+        "negative_controls": neg_control_results,
         "clinical_subgroups": clinical_subgroups,
     }
     with open(SUMMARY_PATH, "w") as f:
         json.dump(summary, f, indent=2)
     print(f"Saved combined READUS-PV & clinical subgroup summary to {SUMMARY_PATH}")
+    write_csv_tables(summary)
+
+
+def write_csv_tables(summary):
+    """Regenerate data/table*.csv from the summary so the CSVs never drift from the analysis."""
+    import csv
+    n = summary["n_total"]
+    with open(os.path.join(DATA_DIR, "table1_concomitant_drugs.csv"), "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["Group_or_Drug", "Unique_Cases_n", f"Percent_of_Total_N{n}"])
+        rows = [
+            ("Total Deduplicated Cobenfy Cohort", n),
+            ("All Concomitant AP / ACB-3 Reports", summary["n_all_poly"]),
+            ("Stratum 1: Strong Antimuscarinics (ACB = 3)", summary["n_ach_ah"]),
+            ("Stratum 2: Non-Antimuscarinic D2/5-HT2A APs Only", summary["n_d2_only"]),
+            ("Reference: No Concomitant AP or ACB-3 Drug", summary["n_pure_mono"]),
+        ] + list(summary["specific_counts"].items())
+        for label, c in rows:
+            w.writerow([label, c, round(c / n * 100, 2)])
+
+    def cells(r):
+        return [r["a"], r["n1"], r["pct1"], r["ror"], r["ci_l"], r["ci_u"], r["p_val"]]
+
+    with open(os.path.join(DATA_DIR, "table2_three_stratum_disproportionality.csv"), "w", newline="") as f:
+        w = csv.writer(f)
+        hdr = ["Endpoint", "Reference_c", "Reference_N", "Reference_Pct"]
+        for g in ("S1", "S2", "S1_vs_S2"):
+            hdr += [f"{g}_a", f"{g}_N", f"{g}_Pct", f"{g}_ROR", f"{g}_CI_Lower", f"{g}_CI_Upper", f"{g}_Fisher_p"]
+        hdr += ["S1_aROR", "S1_aROR_CI_Lower", "S1_aROR_CI_Upper", "S1_aROR_p", "S2_aROR", "S2_aROR_CI_Lower", "S2_aROR_CI_Upper", "S2_aROR_p"]
+        w.writerow(hdr)
+        for r in summary["results"] + summary["negative_controls"]:
+            ref = r["ach_vs_mono"]
+            row = [r["label"], ref["c"], ref["n0"], ref["pct0"]] + cells(r["ach_vs_mono"]) + cells(r["d2_vs_mono"])
+            row += cells(r["s1_vs_s2_h2h"]) if "s1_vs_s2_h2h" in r else [""] * 7
+            lg = r["multivariable_logit"]
+            row += [lg[k] for k in ("s1_aror", "s1_ci_l", "s1_ci_u", "s1_p", "s2_aror", "s2_ci_l", "s2_ci_u", "s2_p")] if lg else [""] * 8
+            w.writerow(row)
+
+    with open(os.path.join(DATA_DIR, "table3_sensitivity_controls.csv"), "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["Sensitivity_Analysis", "Endpoint", "Exposed_n", "Exposed_N", "Exposed_Pct", "ROR", "CI_95_Lower", "CI_95_Upper", "p"])
+        for r in summary["results"]:
+            for key, name in (("hcp_ach_vs_mono", "HCP-only: Stratum 1 vs Reference"), ("nocloz_ach_vs_mono", "Non-clozapine Stratum 1 vs Reference"),
+                              ("s1_vs_s2_h2h", "Active comparator: Stratum 1 vs Stratum 2")):
+                x = r[key]
+                w.writerow([name, r["label"], x["a"], x["n1"], x["pct1"], x["ror"], x["ci_l"], x["ci_u"], x["p_val"]])
+        for key, x in summary["clinical_subgroups"].items():
+            for part, y in x.items():
+                w.writerow([f"Subgroup: {key} ({part})", key, y["a"], y["n1"], y["pct1"], y["ror"], y["ci_l"], y["ci_u"], y["p_val"]])
 
 
 if __name__ == "__main__":
